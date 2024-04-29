@@ -6,7 +6,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Tenant;
 
-
 class TenantSeeder extends Seeder
 {
     /**
@@ -16,8 +15,8 @@ class TenantSeeder extends Seeder
     {
         //
         Tenant::create([
-            'name' => 'Luxury Apartment',
-            'email' => '123 Main St. , Cityville',
+            'name' => 'Josh',
+            'email' => 'tenant@gmail.com',
             'phone_number' => '1234567890',
         ]);
     }

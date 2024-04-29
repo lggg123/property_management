@@ -15,8 +15,8 @@ class LeaseSeeder extends Seeder
     {
         //
         Lease::create([
-            'name' => '1',
-            'email' => 'Fix water leak',
+            'property_id' => 3,
+            'tenant_id' => 3,
             'start_date' => '2021-01-01',
             'end_date' => '2021-01-02',
             'monthly_rent' => 1200.00
