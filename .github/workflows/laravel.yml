@@ -7,46 +7,25 @@ on:
     branches: [ main ]
 
 jobs:
-  laravel-tests:
+  build-and-test:
     runs-on: ubuntu-latest
-    env:
-      WWWGROUP: '1000'
-      WWWUSER: '1000'
-      DB_PASSWORD: 'password'
-      DB_DATABASE: 'laravel'
-      DB_USERNAME: 'root'
-
     services:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: secret
           MYSQL_DATABASE: laravel
         ports:
           - 3306:3306
-
     steps:
     - uses: actions/checkout@v2
-
-    - name: Setup Docker Environment
-      run: docker-compose -f docker-compose.yml up -d
-
-    - name: Install Composer Dependencies
-      run: docker-compose exec laravel.test composer install --prefer-dist --no-progress --no-suggest
-    - name: Update Composer
-      run: docker-compose exec laravel.test composer update
-    - name: Copy .env
-      run: docker-compose exec laravel.test php -r "file_exists('.env') || copy('.env.example', '.env');"
-
-    - name: Generate key
-      run: docker-compose exec laravel.test php artisan key:generate
-
-    - name: Run Migrations
-      run: docker-compose exec laravel.test php artisan migrate
-
-    - name: Run Tests
-      run: docker-compose exec laravel.test vendor/bin/phpunit
-
-    - name: Shutdown Docker Environment
+    - name: Set up Docker environment
+      run: docker-compose up -d
+    - name: Install dependencies
+      run: docker-compose exec app composer install
+    - name: Run migrations
+      run: docker-compose exec app php artisan migrate
+    - name: Run tests
+      run: docker-compose exec app vendor/bin/phpunit
       if: always()
       run: docker-compose -f docker-compose.yml down
