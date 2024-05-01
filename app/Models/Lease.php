@@ -9,7 +9,7 @@ class Lease extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["start date", "end date", "monthly_rent", "property_id", "tenant_id"];
+    protected $fillable = ["start_date", "end_date", "monthly_rent", "property_id", "tenant_id"];
 
     public function property() {
         return $this->belongsTo(Property::class);
