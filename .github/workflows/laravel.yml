@@ -27,7 +27,8 @@ jobs:
 
     - name: Install Composer Dependencies
       run: docker-compose exec laravel.test composer install --prefer-dist --no-progress --no-suggest
-
+    - name: Update Composer
+      run: docker-compose exec laravel.test composer update
     - name: Copy .env
       run: docker-compose exec laravel.test php -r "file_exists('.env') || copy('.env.example', '.env');"
 
