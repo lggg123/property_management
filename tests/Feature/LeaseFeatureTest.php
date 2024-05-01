@@ -29,10 +29,6 @@ class LeaseFeatureTest extends TestCase
             'monthly_rent' => 1000.99
         ]);
 
-        if ($response->status() != 201) {
-            $response->dump();
-        }
-
         $response->assertStatus(201);
         $this->assertDatabaseHas('leases', ['tenant_id' => $tenant->id]);
     }
