@@ -14,6 +14,7 @@ jobs:
       WWWUSER: '1000'
       DB_PASSWORD: 'password'
       DB_DATABASE: 'laravel'
+      DB_USERNAME: 'root'
 
     services:
       mysql:
