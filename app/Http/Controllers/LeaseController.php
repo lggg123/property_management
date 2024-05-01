@@ -29,11 +29,20 @@ class LeaseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Lease $lease)
+    public function store(Request $request)
     {
         //
-        $lease = Lease::create($request->all());
-        return response()->json($lease);
+        $validatedData = $request->validate([
+            'property_id' => 'required|exists:properties,id',
+            'tenant_id' => 'required|exists:tenants,id',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+            'monthly_rent' => 'required|numeric|min:0'
+        ]);
+    
+        // Create a new lease with the validated data
+        $lease = Lease::create($validatedData);
+        return response()->json($lease, 201); // Return 201 status code for resource creation
 
     }
 
