@@ -23,6 +23,8 @@ jobs:
       run: docker-compose -f docker-compose.ci.yml up -d
     - name: Install dependencies
       run: composer install -v
+    - name: update dependencies
+      run: composer update
     - name: Run migrations
       run: php artisan migrate
     - name: Run tests
