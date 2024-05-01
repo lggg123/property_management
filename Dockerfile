@@ -1,5 +1,5 @@
 # Use the official PHP image with the version that matches your Sail setup
-FROM php:8.0-fpm
+FROM php:8.3-fpm
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
