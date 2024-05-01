@@ -22,11 +22,11 @@ jobs:
     - name: Set up Docker environment
       run: docker-compose -f docker-compose.ci.yml up -d
     - name: Install dependencies
-      run: docker-compose exec composer install -v
+      run: composer install -v
     - name: Run migrations
-      run: docker-compose exec php artisan migrate
+      run: php artisan migrate
     - name: Run tests
-      run: docker-compose exec vendor/bin/phpunit
+      run: ./vendor/bin/phpunit
     - name: Turn down
       if: always()
       run: docker-compose -f docker-compose.ci.yml down
