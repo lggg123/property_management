@@ -22,7 +22,7 @@ jobs:
     - name: Set up Docker environment
       run: docker-compose -f docker-compose.ci.yml up -d
     - name: Install dependencies
-      run: docker-compose exec app composer install
+      run: docker-compose exec app composer install -v
     - name: Run migrations
       run: docker-compose exec app php artisan migrate
     - name: Run tests
