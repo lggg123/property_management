@@ -28,4 +28,5 @@ jobs:
     - name: Run tests
       run: docker-compose exec app vendor/bin/phpunit
       if: always()
+    - name: Turn down
       run: docker-compose -f docker-compose.yml down
