@@ -24,7 +24,7 @@ jobs:
     - name: Install dependencies
       run: docker-compose -f docker-compose.ci.yml exec -T app composer install -v
     - name: Run migrations
-      run: docker-compose -f docker-compose.ci.yml exec -T app php artisan migrate
+      run: docker-compose -f docker-compose.ci.yml exec -T app php artisan migrate --force
     - name: Run tests
       run: ./vendor/bin/phpunit
     - name: Turn down
