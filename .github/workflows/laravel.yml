@@ -9,6 +9,11 @@ on:
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
+    env:
+      WWWGROUP: '1000'
+      WWWUSER: '1000'
+      DB_PASSWORD: 'password'
+      DB_DATABASE: 'laravel'
 
     services:
       mysql:
