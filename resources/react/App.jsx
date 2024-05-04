@@ -4,9 +4,9 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-import Home from './components/Home';
-import Properties from './components/Properties';
-import Tenants from './components/Tenants';
+import Home from './src/components/Home';
+import Properties from './src/components/Properties';
+import Tenants from './src/components/Tenants';
 
 function App() {
   return (
