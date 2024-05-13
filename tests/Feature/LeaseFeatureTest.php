@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\Models\Lease;
 use App\Models\Property;
 use App\Models\Tenant;
+use PHPUnit\Framework\Attributes\Test;
 
 class LeaseFeatureTest extends TestCase
 {
@@ -15,7 +16,7 @@ class LeaseFeatureTest extends TestCase
     /**
      * A basic feature test example.
      */
-     /** @test */
+    #[Test]
     public function a_lease_can_be_created()
     {
         $property = Property::factory()->create();

@@ -13,8 +13,8 @@ class TenantFeatureTest extends TestCase
      * A basic feature test example.
      */
     use RefreshDatabase;
-    /** @test */
-    public function a_tenant_can_be_created()
+    /** #[Test] */
+    public function test_a_tenant_can_be_created()
     {
         $response = $this->postJson('/api/tenants', [
             'name' => 'Jane Doe',

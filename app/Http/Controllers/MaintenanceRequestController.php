@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MaintenanceRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MaintenanceRequestController extends Controller
 {
@@ -31,8 +32,26 @@ class MaintenanceRequestController extends Controller
     public function store(Request $request)
     {
         //
-        $maintenance = MaintenanceRequest::create($request->all());
-        return response()->json($maintenance);
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'status' => 'required|in:pending,in_progress,completed',
+            'property_id' => 'required|integer|exists:properties,id'
+        ]);
+    
+        // Check if validation fails
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), 400);
+        }
+    
+        // Create the maintenance request safely after validation
+        try {
+            $maintenance = MaintenanceRequest::create($validator->validated());
+            return response()->json($maintenance, 201);
+        } catch (\Exception $e) {
+            // Handle the error appropriately
+            return response()->json(['error' => 'Failed to create maintenance request', 'details' => $e->getMessage()], 500);
+        }
     }
 
     /**

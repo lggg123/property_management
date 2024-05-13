@@ -14,8 +14,8 @@ class PropertyFeatureTest extends TestCase
      * A basic feature test example.
      */
     use RefreshDatabase;
-     /** @test */
-    public function a_property_can_be_added_through_api()
+     /** #[Test] */
+    public function test_a_property_can_be_added_through_api()
     {
         $user = User::factory()->create();
         $response = $this->actingAs($user)->postJson('/api/properties', [
